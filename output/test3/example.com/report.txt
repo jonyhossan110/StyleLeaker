@@ -1,9 +1,0 @@
-StyleLeaker Severity Report
-============================================================
-Target  : https://example.com
-Scanned : 2026-03-31 04:05:33 UTC
-
-Overall Score : 0
-Risk Level    : INFO
-
-High / Critical Findings:
