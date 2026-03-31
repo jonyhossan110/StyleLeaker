@@ -78,6 +78,13 @@ def parse_headers(headers: Optional[str], logger: Logger) -> Optional[Dict[str, 
     return None
 
 
+def positive_int(value: str) -> int:
+    ivalue = int(value)
+    if ivalue <= 0:
+        raise argparse.ArgumentTypeError(f"{value} is not a positive integer")
+    return ivalue
+
+
 def main() -> int:
     args = parse_arguments()
     logger = Logger(verbose=args.verbose)
