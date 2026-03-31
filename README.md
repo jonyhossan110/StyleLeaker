@@ -104,5 +104,4 @@ Use StyleLeaker only for authorized security research, ethical hacking, and bug 
 Md. Jony Hassain | HexaCyberLab
 
 - GitHub: https://github.com/jonyhossan110
-- LinkedIn: https://www.linkedin.com/in/jonyhossan110
-- Upwork: https://www.upwork.com/freelancers/~jonyhossan110
+- LinkedIn: https://www.linkedin.com/in/md-jony-hassain/
