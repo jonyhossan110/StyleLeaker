@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pathlib import Path
+import html
 from typing import Any, Dict, List, Optional
 
 REPORTLAB_AVAILABLE = True
@@ -143,6 +144,10 @@ def _styles() -> Dict[str, ParagraphStyle]:
     return s
 
 
+def _escape_for_paragraph(value: Any) -> str:
+    return html.escape(str(value if value is not None else ""), quote=True).replace("\n", "<br/>")
+
+
 # ── Page Templates ─────────────────────────────────────────────────────────────
 
 def _on_first_page(canvas, doc):
@@ -230,9 +235,10 @@ def _dark_table(data: List[List[Any]], col_widths: List[float]) -> Table:
 def _severity_badge(text: str, high: bool = True) -> Paragraph:
     color = "#FF4444" if high else "#FFB700"
     label = "HIGH" if high else "MEDIUM"
+    safe_text = _escape_for_paragraph(text)
     html = (
         f'<font color="{color}"><b>[{label}]</b></font> '
-        f'<font color="#E2E8F0">{text}</font>'
+        f'<font color="#E2E8F0">{safe_text}</font>'
     )
     return Paragraph(html, ParagraphStyle(
         "badge",
@@ -688,7 +694,7 @@ def _build_html_comments(story: List, analysis: Dict[str, Any], s: Dict) -> None
         for i, comment in enumerate(comments, 1):
             story.append(Paragraph(
                 f'<font color="#64748B">#{i}</font> '
-                f'<font color="#00BFFF">{comment[:300]}</font>',
+                f'<font color="#00BFFF">{_escape_for_paragraph(comment[:300])}</font>',
                 ParagraphStyle("c", fontName="Courier", fontSize=7.5,
                                textColor=C_ACCENT2, spaceAfter=4, leading=11)))
     else:
@@ -713,7 +719,7 @@ def _build_css_comments(story: List, analysis: Dict[str, Any], s: Dict) -> None:
         for i, comment in enumerate(comments[:40], 1):  # Cap at 40 to keep PDF sane
             story.append(Paragraph(
                 f'<font color="#64748B">#{i}</font> '
-                f'<font color="#94A3B8">{comment[:300]}</font>',
+                f'<font color="#94A3B8">{_escape_for_paragraph(comment[:300])}</font>',
                 ParagraphStyle("cc", fontName="Courier", fontSize=7.5,
                                textColor=C_TEXT, spaceAfter=4, leading=11)))
         if len(comments) > 40:
