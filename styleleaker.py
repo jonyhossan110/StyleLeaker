@@ -24,31 +24,29 @@ BANNER = r'''
 / ___|| |_ _   _| | ___| |    ___  __ _| | _____ _ __ 
 \___ \| __| | | | |/ _ \ |   / _ \/ _` | |/ / _ \ '__|
  ___) | |_| |_| | |  __/ |__|  __/ (_| |   <  __/ |   
-|____/ \__|\__, |_|\___|_____\___|\__,_|_|\_\___|_|   
+|____/ \__|\__, |_|\___|_____\___\__,_|_|\_\___|_|   
            |___/                                        
-  v1.0.0 | By HexaCyberLab | Web Pentesting Tool
-  github.com/jonyhossan110
+  v1.0.0 | By HexaCyberLab | Web CyberSecurity Tool |
+
++-------------------------------------------------------+
+|  Created By: Md. Jony Hassain (HexaCyberLab)           |
+|  LinkedIn: https://www.linkedin.com/in/jonyhossan110/  |  
+|   https://github.com/jonyhossan110/StyleLeaker         |
++--------------------------------------------------------+
 '''
-
-
-def positive_int(value: str) -> int:
-    parsed = int(value)
-    if parsed <= 0:
-        raise argparse.ArgumentTypeError('Value must be a positive integer')
-    return parsed
 
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='StyleLeaker - Extract HTML and CSS assets for web security research')
-    parser.add_argument('-u', '--url', help='Target URL')
+    parser.add_argument('-u', '--url', required=True, help='Target URL')
     parser.add_argument('-o', '--output', default='./output', help='Output directory')
-    parser.add_argument('-t', '--timeout', type=positive_int, default=10, help='Request timeout in seconds')
+    parser.add_argument('-t', '--timeout', type=int, default=10, help='Request timeout in seconds')
     parser.add_argument('-p', '--proxy', help='Proxy URL (e.g., http://127.0.0.1:8080)')
     parser.add_argument('--no-download', action='store_true', help='Only analyze, do not save CSS files')
     parser.add_argument('--no-recon', action='store_true', help='Skip robots.txt and header analysis')
     parser.add_argument('--severity-only', action='store_true', help='Only show HIGH and CRITICAL findings')
     parser.add_argument('--output-format', choices=['pdf', 'txt', 'both'], default='both', help='Choose output format')
-    parser.add_argument('--depth', type=positive_int, default=2, help='CSS @import recursion depth')
+    parser.add_argument('--depth', type=int, default=2, help='CSS @import recursion depth')
     parser.add_argument('--user-agent', help='Custom user agent string')
     parser.add_argument('--auth-cookie', help='Cookie string for authenticated page scanning')
     parser.add_argument('--cookies', help='Cookies string for authenticated scans')
@@ -91,7 +89,7 @@ def main() -> int:
     print(BANNER)
     logger.info('Starting StyleLeaker scan')
 
-    target_url = (args.url or '').strip()
+    target_url = args.url.strip()
     if not target_url:
         logger.error('No URL supplied. Use -u or --url to specify a target.')
         return 1
