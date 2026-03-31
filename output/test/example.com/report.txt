@@ -1,0 +1,40 @@
+StyleLeaker Scan Report
+========================================
+Target URL: https://example.com
+Scanned At: 2026-03-31 03:26:10 UTC
+
+Total CSS files found: 0
+Total inline style blocks: 1
+
+Frameworks Detected:
+  - None detected
+
+CDNs in use:
+  - None detected
+
+Sensitive class/ID patterns found:
+  - None found
+
+Hidden form fields found:
+  - None found
+
+HTML comments found:
+  - None found
+
+CSS comments found:
+  - None found
+
+Developer notes found:
+  - None found
+
+Developer IP addresses found:
+  - None found
+
+Developer internal URLs found:
+  - None found
+
+CSS variables:
+  - None found
+
+Media query breakpoints:
+  - None found

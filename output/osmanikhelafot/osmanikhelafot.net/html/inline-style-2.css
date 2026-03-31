@@ -1,0 +1,23 @@
+/* চ্যাটবট ফন্ট ও স্টাইল */
+    body, button, input, textarea, .font-hind { font-family: 'Hind Siliguri', sans-serif !important; }
+    
+    /* চ্যাটবট সবার উপরে রাখার জন্য */
+    #chatToggleBtn, #chatWindow { z-index: 2147483647 !important; } 
+    
+    .chat-body::-webkit-scrollbar { width: 6px; }
+    .chat-body::-webkit-scrollbar-track { background: #f1f1f1; }
+    .chat-body::-webkit-scrollbar-thumb { background: #ca8a04; border-radius: 4px; }
+    
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    
+    .chat-bubble-user { background: linear-gradient(135deg, #ca8a04 0%, #a16207 100%); color: #ffffff; border-radius: 15px 15px 0 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .chat-bubble-bot { background: #ffffff; border: 1px solid #e5e7eb; color: #374151; border-radius: 15px 15px 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    
+    .typing-dot { width: 6px; height: 6px; background-color: #ca8a04; border-radius: 50%; display: inline-block; animation: typing 1.4s infinite ease-in-out both; margin: 0 2px; }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; } .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+    /* লিঙ্ক স্টাইল */
+    .bot-link { color: #d97706; font-weight: 600; text-decoration: underline; }
+    .bot-link:hover { color: #b45309; }
